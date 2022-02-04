@@ -10,7 +10,7 @@ body {
 
 p {
   font-weight: bold;
-  font-size: 12px;
+  font-size: 1.2vw;
 }
 
 select {
@@ -20,14 +20,14 @@ select {
 
 .item {
   display: flex;
-  margin: -0.4rem 1.8rem 1rem 1.8rem;
+  margin: -0.2vw 1.8vw 1vw 1vw;
 }
 
 .part {
   display: flex;
-  width: 100%;
+  width: 100vw;
   height: auto;
-  margin: 0 2.2rem 0 1.2rem;
+  margin: 0 1vw 0 1vw;
 }
 
 .beat {
@@ -39,17 +39,17 @@ select {
 }
 
 .name {
-  margin: 1.4rem 0 0 0;
+  margin: 2vw 0 0 0;
 }
 
 .name p {
-  width: 4rem;
-  margin: 0.4rem -0.8rem 0.6rem 0;
+  width: 4vw;
+  margin: 0.5vw -0.2vw 1vw 0;
 }
 
 .part select {
-  width: 2.8rem;
-  height: 2rem;
+  width: 4vw;
+  height: 3vw;
   margin: 0;
 }
 
@@ -59,13 +59,13 @@ select {
 
 .rhythm_img {
   display: flex;
-  margin: 0.5rem 1rem 0 1rem;
+  margin: 0.2vw 0 0 0;
   justify-content: space-around;
-  font-size: 20px;
+  font-size: 4vw;
 }
 
 .rhythm_img img {
-  width: 6rem;
+  width: 8vw;
   height: auto;
 }
 
@@ -74,7 +74,7 @@ select {
 #un,
 #tau,
 #uta {
-  border: 0.4rem solid lightblue;
+  border: 0.2vw solid lightblue;
   width: 50%;
   height: 50%;
   object-fit: cover;
@@ -83,7 +83,7 @@ select {
 #ta__n,
 #ta_nta,
 #tata_n {
-  border: 0.4rem solid lightpink;
+  border: 0.2vw solid lightpink;
 }
 
 .rhythm_img p {
@@ -93,39 +93,39 @@ select {
 .tempo_and_piano {
   display: flex;
   justify-content: space-around;
-  width: 100%;
-  margin: 0.2rem 0 0 0;
+  width: 100vw;
+  margin: 0.1vw 0 0 0;
 }
 
 #tempo_category {
   display: flex;
-  width: 8rem;
-  height: 2.8rem;
-  margin: 1.6rem 0 0 1rem;
+  width: 12vw;
+  height: 4vw;
+  margin: 0.8vw 0 0 0.5vw;
   background-color: #eee8aa;
 }
 
 .buttons {
   display: flex;
-  margin: 1.6rem 0 0 0;
+  margin: 0.8vw 0 0 0;
   justify-content: space-around;
 }
 
 button {
-  width: 5rem;
-  height: 2.5rem;
-  border-radius: 16px;
+  width: 8vw;
+  height: 4vw;
+  border-radius: 1.5vw;
   border: none;
   color: black;
   font-weight: bold;
-  font-size: 12px;
-  margin: 0.2rem 0.4rem 0 0;
+  font-size: 1.5vw;
+  margin: 0.2vw 0.4vw 0 0;
 }
 
 #play_mode {
-  width: 6rem;
-  height: 2.8rem;
-  margin: 0.2rem 0.5rem 0 0;
+  width: 10vw;
+  height: 4vw;
+  margin: 0.2vw 0.5vw 0 0;
   background-color: #eedab9;
 }
 
@@ -134,7 +134,7 @@ button {
   display: inline-block;
   position: relative;
   color: #000;
-  font-size: 2rem;
+  font-size: 3vw;
 }
 
 #play::before {
@@ -144,8 +144,8 @@ button {
   transform: translateY(-50%);
   width: 0;
   height: 0;
-  border: 0.3em solid transparent;
-  border-left: 0.5em solid currentColor;
+  border: 0.8vw solid transparent;
+  border-left: 1.5vw solid currentColor;
   box-sizing: border-box;
   content: "";
 }
@@ -155,7 +155,7 @@ button {
   display: inline-block;
   position: relative;
   color: #000;
-  font-size: 2rem;
+  font-size: 2vw;
 }
 
 #stop::before,
@@ -180,11 +180,11 @@ button {
 
 .piano {
   display: flex;
-  width: 27rem;
-  height: 5.5rem;
-  margin: 1rem 2rem;
-  border: 0.5rem solid #ffff00;
-  border-radius: 0.8rem;
+  width: 40vw;
+  height: 10vw;
+  margin: 1vw 2vw;
+  border: 0.8vw solid #ffff00;
+  border-radius: 0.8vw;
 }
 
 .white {
