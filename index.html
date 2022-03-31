@@ -1521,6 +1521,7 @@ function changeTempo(){
   }  
 }
 
+//全曲再生
 function playMelody() {
   const synth = new Tone.Synth().toDestination();
   changeTempo();
@@ -1663,6 +1664,7 @@ function setPlay(time, note) {synth.triggerAttackRelease(note.note, note.duratio
     Tone.Transport.start();
 }
 
+//前半再生
 function playMelodyFirstHalf(){
   const synth = new Tone.Synth().toDestination();
   changeTempo();
@@ -1770,6 +1772,8 @@ function setPlay(time, note) {synth.triggerAttackRelease(note.note, note.duratio
     Tone.Transport.start();
 }
 
+
+//後半再生
 function playMelodyLatterHalf() {
   const synth = new Tone.Synth().toDestination();
   changeTempo();
