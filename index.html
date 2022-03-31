@@ -1595,7 +1595,7 @@ function playMelody() {
 for(i = 0; i < 64; i+=4){
     switch(rhythm_category[i/2].value){
     case "tata":
-    item[`${i+1}`] = {note: note_category[i/2].value, duration: "4n"};
+    item[`${i+1}`] = {note: note_category[i/2].value, duration: "8n"};
     break;
     case "un":
     item[`${i}`] = null;
@@ -1615,7 +1615,7 @@ for(i = 0; i < 64; i+=4){
     case "ta_nta":
     item[`${i}`]["duration"] = "3n";
     item[`${i+2}`] = null;
-    item[`${i+3}`] = {note: note_category[i/2+1].value, duration: "4n"};
+    item[`${i+3}`] = {note: note_category[i/2+1].value, duration: "8n"};
     break;
     case "tata_n":
     item[`${i}`]["duration"] = "8n";
@@ -1629,7 +1629,7 @@ for(i = 0; i < 64; i+=4){
 for(i = 2; i < 64; i+=4){
     switch(rhythm_category[i/2].value){
     case "tata":
-    item[`${i+1}`] = {note: note_category[i/2].value, duration: "4n"};
+    item[`${i+1}`] = {note: note_category[i/2].value, duration: "8n"};
     break;
     case "un":
     item[`${i}`] = null;
@@ -1706,7 +1706,7 @@ function playMelodyFirstHalf(){
 for(i = 0; i < 32; i+=4){
     switch(rhythm_category[i/2].value){
     case "tata":
-    item[`${i+1}`] = {note: note_category[i/2].value, duration: "4n"};
+    item[`${i+1}`] = {note: note_category[i/2].value, duration: "8n"};
     break;
     case "un":
     item[`${i}`] = null;
@@ -1726,7 +1726,7 @@ for(i = 0; i < 32; i+=4){
     case "ta_nta":
     item[`${i}`]["duration"] = "3n";
     item[`${i+2}`] = null;
-    item[`${i+3}`] = {note: note_category[i/2+1].value, duration: "4n"};
+    item[`${i+3}`] = {note: note_category[i/2+1].value, duration: "8n"};
     break;
     case "tata_n":
     item[`${i}`]["duration"] = "8n";
@@ -1740,7 +1740,7 @@ for(i = 0; i < 32; i+=4){
 for(i = 2; i < 32; i+=4){
     switch(rhythm_category[i/2].value){
     case "tata":
-    item[`${i+1}`] = {note: note_category[i/2].value, duration: "4n"};
+    item[`${i+1}`] = {note: note_category[i/2].value, duration: "8n"};
     break;
     case "un":
     item[`${i}`] = null;
@@ -1812,7 +1812,7 @@ function playMelodyLatterHalf() {
 for(i = 32; i < 64; i+=4){
     switch(rhythm_category[i/2].value){
     case "tata":
-    item[`${i+1}`] = {note: note_category[i/2].value, duration: "4n"};
+    item[`${i+1}`] = {note: note_category[i/2].value, duration: "8n"};
     break;
     case "un":
     item[`${i}`] = null;
@@ -1832,7 +1832,7 @@ for(i = 32; i < 64; i+=4){
     case "ta_nta":
     item[`${i}`]["duration"] = "3n";
     item[`${i+2}`] = null;
-    item[`${i+3}`] = {note: note_category[i/2+1].value, duration: "4n"};
+    item[`${i+3}`] = {note: note_category[i/2+1].value, duration: "8n"};
     break;
     case "tata_n":
     item[`${i}`]["duration"] = "8n";
@@ -1846,7 +1846,7 @@ for(i = 32; i < 64; i+=4){
 for(i = 34; i < 64; i+=4){
     switch(rhythm_category[i/2].value){
     case "tata":
-    item[`${i+1}`] = {note: note_category[i/2].value, duration: "4n"};
+    item[`${i+1}`] = {note: note_category[i/2].value, duration: "8n"};
     break;
     case "un":
     item[`${i}`] = null;
