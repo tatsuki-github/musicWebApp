@@ -939,15 +939,10 @@
   </div>
 </div>
 
-
-    
-
-
 <script>
   window.addEventListener("load", function(){
     displayNote();
   }, false)
-
 
 //再生ボタン
   document.getElementById("play").addEventListener("click", function() {
@@ -1097,7 +1092,6 @@ function setPlay(time, note) {
   Tone.Transport.start();
 }, false);
 
-
   document.getElementById("do").addEventListener("click", function() {
   const synth = new Tone.Synth().toDestination();
   synth.triggerAttackRelease("C4", "4n");
@@ -1148,7 +1142,6 @@ document.getElementById("mi_high").addEventListener("click", function() {
   synth.triggerAttackRelease("E5", "4n");
 }, false);
 
-
     const note_category = [note_category1,note_category2,note_category3,note_category4,note_category5,note_category6,note_category7,note_category8,note_category9,note_category10,note_category11,note_category12,note_category13,note_category14,note_category15,note_category16,note_category17,note_category18,note_category19,note_category20,note_category21,note_category22,note_category23,note_category24,note_category25,note_category26,note_category27,note_category28,note_category29,note_category30,note_category31,note_category32];
     const rhythm_category = [rhythm_category1,rhythm_category2,rhythm_category3,rhythm_category4,rhythm_category5,rhythm_category6,rhythm_category7,rhythm_category8,rhythm_category9,rhythm_category10,rhythm_category11,rhythm_category12,rhythm_category13,rhythm_category14,rhythm_category15,rhythm_category16,rhythm_category17,rhythm_category18,rhythm_category19,rhythm_category20,rhythm_category21,rhythm_category22,rhythm_category23,rhythm_category24,rhythm_category25,rhythm_category26,rhythm_category27,rhythm_category28,rhythm_category29,rhythm_category30,rhythm_category31,rhythm_category32];
     
@@ -1176,7 +1169,6 @@ function Refresh(){
   Tone.Transport.cancel();
   btnAble();
 }
-
 
 function preparePlay(){
   if(tempo_category.value == "select"){
@@ -1234,7 +1226,6 @@ function rhythmDisplayFirst(){
     }
   }
 }
-
 
 function rhythmDisplayLatter(){
   for(i = 16; i < rhythm_category.length; i++){
