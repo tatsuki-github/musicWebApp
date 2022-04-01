@@ -1016,13 +1016,10 @@ else{
 }
 }
 
-
 //停止ボタン
 document.getElementById("stop").addEventListener("click", function() {
     Refresh();
 }, false);
-
-
 
 document.getElementById("tan").addEventListener("click", function() {
   const synth = new Tone.Synth().toDestination();
@@ -1172,19 +1169,15 @@ document.getElementById("mi_high").addEventListener("click", function() {
     play_mode.onchange = Refresh;
     const first = document.getElementById("first");
     const latter = document.getElementById("latter");
-    
-
     play_mode.onchange = displayNote;
 
-
-    
 function Refresh(){
   Tone.Transport.stop();
   Tone.Transport.cancel();
   btnAble();
 }
 
-   
+
 function preparePlay(){
   if(tempo_category.value == "select"){
     tempo_category.value = "tempo_100";    
@@ -1294,8 +1287,8 @@ function rhythmDisplayLatterClear(){
     rhythm_category[i].style.visibility = "hidden";
   }
 }
-function displayNote(){
 
+function displayNote(){
   if(play_mode.value == "play_first_half"){
     first.style.visibility = "visible";
     latter.style.visibility = "hidden";
@@ -1318,13 +1311,10 @@ function displayNote(){
   changeRythm();
   ABCJS.renderAbc("note","M:4/4\nL:1/4\nK:C\n " + `"C"` + `${notes[0]}` + notes[1] + notes[2] + notes[3] + "|" + `"Am"` + `${notes[4]}` + notes[5] + notes[6] + notes[7] + "|" + `"F"` + `${notes[8]}` + notes[9] + notes[10] + notes[11] + "|" + `"G"` + `${notes[12]}`  + notes[13] + notes[14] + notes[15] + "|",{responsive: "resize",paddingtop:"0",paddingbottom:"-16"});
   ABCJS.renderAbc("note2","\nL:1/4\nK:C\n " + `"C"` + `${notes[16]}` + notes[17] + notes[18] + notes[19] + "|" + `"Am"` + `${notes[20]}` + notes[21] + notes[22] + notes[23] + "|" + `"Dm"` + `${notes[24]}` + notes[25] + `"G7"` + `${notes[26]}`  + notes[27] + "|" + `"C"` + `${notes[28]}` + notes[29] + notes[30] + notes[31] + "||",{responsive: "resize",paddingtop:"0",paddingbottom:"-16"});
-
 }    
-
 
 function changeRythm(){
   let display_note;
-  
     for(i = 0; i < rhythm_category.length; i+=2){
       switch(note_category[i].value){
         case "C4":
@@ -1397,7 +1387,6 @@ function changeRythm(){
           notes[i] = ` ${display_note} `;
       } 
   }
-
   for(i = 1; i < rhythm_category.length; i+=2){
       switch(note_category[i].value){
         case "C4":
@@ -1470,30 +1459,37 @@ function changeRythm(){
     }
   }
 }
-  
+
 function playMode(){
+  Tone.Transport.start();
   switch (play_mode.value){
     case "only_code":
-      playCords();
+      playCordsFirstHalf("0m");
+      playCordsLatterHalf("4m");   
         break;
     case "only_melody":
-      playMelody();
+      playMelodyFirstHalf("0m");
+      playMelodyLatterHalf("4m");
         break;
     case "play_first_half":
-      playMelodyFirstHalf();
-      playCordsFirstHalf();
+      playMelodyFirstHalf("0m");
+      playCordsFirstHalf("0m");
         break;
     case "play_latter_half":
-      playMelodyLatterHalf();
-      playCordsLatterHalf();   
+      playMelodyLatterHalf("0m");
+      playCordsLatterHalf("0m");   
         break;    
     case "play":
-      playCords();
-      playMelody();
+      playMelodyFirstHalf("0m");
+      playMelodyLatterHalf("4m");
+      playCordsFirstHalf("0m");
+      playCordsLatterHalf("4m");  
         break;    
-    default:  
-      playCords();
-      playMelody();
+    default: 
+      playMelodyFirstHalf("0m");
+      playMelodyLatterHalf("4m"); 
+      playCordsFirstHalf("0m");
+      playCordsLatterHalf("4m");  
   }    
 }
 
@@ -1518,193 +1514,25 @@ function changeTempo(){
     Tone.Transport.bpm.value = 160;     
         break;      
     default:  
+    Tone.Transport.bpm.value = 100;
   }  
 }
 
-//全曲再生
-function playMelody() {
+//前半旋律再生
+function playMelodyFirstHalf(startTime){
   const synth = new Tone.Synth().toDestination();
   changeTempo();
   preparePlay();
   const item = {
-  0:{note: note_category[0].value, duration: "4n"},
-  1:null,
-  2:{note: note_category[1].value, duration: "4n"},
-  3:null,
-  4:{note: note_category[2].value, duration: "4n"},
-  5:null,
-  6:{note: note_category[3].value, duration: "4n"},
-  7:null,
-  8:{note: note_category[4].value, duration: "4n"},
-  9:null,
-  10:{note: note_category[5].value, duration: "4n"},
-  11:null,
-  12:{note: note_category[6].value, duration: "4n"},
-  13:null,
-  14:{note: note_category[7].value, duration: "4n"},
-  15:null,
-  16:{note: note_category[8].value, duration: "4n"},
-  17:null,
-  18:{note: note_category[9].value, duration: "4n"},
-  19:null,
-  20:{note: note_category[10].value, duration: "4n"},
-  21:null,
-  22:{note: note_category[11].value, duration: "4n"},
-  23:null,
-  24:{note: note_category[12].value, duration: "4n"},
-  25:null,
-  26:{note: note_category[13].value, duration: "4n"},
-  27:null,
-  28:{note: note_category[14].value, duration: "4n"},
-  29:null,
-  30:{note: note_category[15].value, duration: "4n"},
-  31:null,
-  32:{note: note_category[16].value, duration: "4n"},
-  33:null,
-  34:{note: note_category[17].value, duration: "4n"},
-  35:null,
-  36:{note: note_category[18].value, duration: "4n"},
-  37:null,
-  38:{note: note_category[19].value, duration: "4n"},
-  39:null,
-  40:{note: note_category[20].value, duration: "4n"},
-  41:null,
-  42:{note: note_category[21].value, duration: "4n"},
-  43:null,
-  44:{note: note_category[22].value, duration: "4n"},
-  45:null,
-  46:{note: note_category[23].value, duration: "4n"},
-  47:null,
-  48:{note: note_category[24].value, duration: "4n"},
-  49:null,
-  50:{note: note_category[25].value, duration: "4n"},
-  51:null,
-  52:{note: note_category[26].value, duration: "4n"},
-  53:null,
-  54:{note: note_category[27].value, duration: "4n"},
-  55:null,
-  56:{note: note_category[28].value, duration: "4n"},
-  57:null,
-  58:{note: note_category[29].value, duration: "4n"},
-  59:null,
-  60:{note: note_category[30].value, duration: "4n"},
-  61:null,
-  62:{note: note_category[31].value, duration: "4n"},
-  63:null,
+  0:{note: note_category[0].value, duration: "4n"},1:null,2:{note: note_category[1].value, duration: "4n"},3:null,
+  4:{note: note_category[2].value, duration: "4n"},5:null,6:{note: note_category[3].value, duration: "4n"},7:null,
+  8:{note: note_category[4].value, duration: "4n"},9:null,10:{note: note_category[5].value, duration: "4n"},11:null,
+  12:{note: note_category[6].value, duration: "4n"},13:null,14:{note: note_category[7].value, duration: "4n"},15:null,
+  16:{note: note_category[8].value, duration: "4n"},17:null,18:{note: note_category[9].value, duration: "4n"},19:null,
+  20:{note: note_category[10].value, duration: "4n"},21:null,22:{note: note_category[11].value, duration: "4n"},23:null,
+  24:{note: note_category[12].value, duration: "4n"},25:null,26:{note: note_category[13].value, duration: "4n"},27:null,
+  28:{note: note_category[14].value, duration: "4n"},29:null,30:{note: note_category[15].value, duration: "4n"},31:null,
 };
-
-for(i = 0; i < 64; i+=4){
-    switch(rhythm_category[i/2].value){
-    case "tata":
-    item[`${i+1}`] = {note: note_category[i/2].value, duration: "8n"};
-    break;
-    case "un":
-    item[`${i}`] = null;
-    break;
-    case "tau":
-    item[`${i}`] = {note: note_category[i/2].value, duration: "8n"};
-    item[`${i+1}`] = null;
-    break;
-    case "uta":
-    item[`${i}`] = null;
-    item[`${i+1}`] = {note: note_category[i/2].value, duration: "8n"};
-    break;
-    case "ta__n":
-    item[`${i}`]["duration"] = "2n";
-    item[`${i+2}`] = null;
-    break;
-    case "ta_nta":
-    item[`${i}`]["duration"] = "3n";
-    item[`${i+2}`] = null;
-    item[`${i+3}`] = {note: note_category[i/2+1].value, duration: "8n"};
-    break;
-    case "tata_n":
-    item[`${i}`]["duration"] = "8n";
-    item[`${i+1}`] = {note: note_category[i/2+1].value, duration: "3n"};
-    item[`${i+2}`] = null;
-    break;
-    default:
-  }
-}
-
-for(i = 2; i < 64; i+=4){
-    switch(rhythm_category[i/2].value){
-    case "tata":
-    item[`${i+1}`] = {note: note_category[i/2].value, duration: "8n"};
-    break;
-    case "un":
-    item[`${i}`] = null;
-    break;
-    case "tau":
-    item[`${i}`] = {note: note_category[i/2].value, duration: "8n"};
-    item[`${i+1}`] = null;
-    break;
-    case "uta":
-    item[`${i}`] = null;
-    item[`${i+1}`] = {note: note_category[i/2].value, duration: "8n"};
-    break;
-    default:
-  }
-}
-
-const melodyList = [
-  item["0"],item["1"],item["2"],item["3"],item["4"],item["5"],item["6"],item["7"],
-  item["8"],item["9"],item["10"],item["11"],item["12"],item["13"],item["14"],item["15"],
-  item["16"],item["17"],item["18"],item["19"],item["20"],item["21"],item["22"],item["23"],
-  item["24"],item["25"],item["26"],item["27"],item["28"],item["29"],item["30"],item["31"],
-  item["32"],item["33"],item["34"],item["35"],item["36"],item["37"],item["38"],item["39"],
-  item["40"],item["41"],item["42"],item["43"],item["44"],item["45"],item["46"],item["47"],
-  item["48"],item["49"],item["50"],item["51"],item["52"],item["53"],item["54"],item["55"],
-  item["56"],item["57"],item["58"],item["59"],item["60"],item["61"],item["62"],item["63"]
-];
-
-function setPlay(time, note) {synth.triggerAttackRelease(note.note, note.duration, time);}
-    const melody = new Tone.Sequence(setPlay, melodyList).start();
-    melody.loop = 0;  
-    Tone.Transport.start();
-}
-
-//前半再生
-function playMelodyFirstHalf(){
-  const synth = new Tone.Synth().toDestination();
-  changeTempo();
-  preparePlay();
-  
-  const item = {
-  0:{note: note_category[0].value, duration: "4n"},
-  1:null,
-  2:{note: note_category[1].value, duration: "4n"},
-  3:null,
-  4:{note: note_category[2].value, duration: "4n"},
-  5:null,
-  6:{note: note_category[3].value, duration: "4n"},
-  7:null,
-  8:{note: note_category[4].value, duration: "4n"},
-  9:null,
-  10:{note: note_category[5].value, duration: "4n"},
-  11:null,
-  12:{note: note_category[6].value, duration: "4n"},
-  13:null,
-  14:{note: note_category[7].value, duration: "4n"},
-  15:null,
-  16:{note: note_category[8].value, duration: "4n"},
-  17:null,
-  18:{note: note_category[9].value, duration: "4n"},
-  19:null,
-  20:{note: note_category[10].value, duration: "4n"},
-  21:null,
-  22:{note: note_category[11].value, duration: "4n"},
-  23:null,
-  24:{note: note_category[12].value, duration: "4n"},
-  25:null,
-  26:{note: note_category[13].value, duration: "4n"},
-  27:null,
-  28:{note: note_category[14].value, duration: "4n"},
-  29:null,
-  30:{note: note_category[15].value, duration: "4n"},
-  31:null,
-};
-
 for(i = 0; i < 32; i+=4){
     switch(rhythm_category[i/2].value){
     case "tata":
@@ -1738,7 +1566,6 @@ for(i = 0; i < 32; i+=4){
     default:
   }
 }
-
 for(i = 2; i < 32; i+=4){
     switch(rhythm_category[i/2].value){
     case "tata":
@@ -1758,61 +1585,33 @@ for(i = 2; i < 32; i+=4){
     default:
   }
 }
-
 const melodyList = [
   item["0"],item["1"],item["2"],item["3"],item["4"],item["5"],item["6"],item["7"],
   item["8"],item["9"],item["10"],item["11"],item["12"],item["13"],item["14"],item["15"],
   item["16"],item["17"],item["18"],item["19"],item["20"],item["21"],item["22"],item["23"],
   item["24"],item["25"],item["26"],item["27"],item["28"],item["29"],item["30"],item["31"],
 ];
-
 function setPlay(time, note) {synth.triggerAttackRelease(note.note, note.duration, time);}
-    const melody = new Tone.Sequence(setPlay, melodyList).start();
+    const melody = new Tone.Sequence(setPlay, melodyList).start(startTime);
     melody.loop = 0;  
-    Tone.Transport.start();
 }
 
 
-//後半再生
-function playMelodyLatterHalf() {
+//後半旋律再生
+function playMelodyLatterHalf(startTime) {
   const synth = new Tone.Synth().toDestination();
   changeTempo();
   preparePlay();
   const item = {
-  32:{note: note_category[16].value, duration: "4n"},
-  33:null,
-  34:{note: note_category[17].value, duration: "4n"},
-  35:null,
-  36:{note: note_category[18].value, duration: "4n"},
-  37:null,
-  38:{note: note_category[19].value, duration: "4n"},
-  39:null,
-  40:{note: note_category[20].value, duration: "4n"},
-  41:null,
-  42:{note: note_category[21].value, duration: "4n"},
-  43:null,
-  44:{note: note_category[22].value, duration: "4n"},
-  45:null,
-  46:{note: note_category[23].value, duration: "4n"},
-  47:null,
-  48:{note: note_category[24].value, duration: "4n"},
-  49:null,
-  50:{note: note_category[25].value, duration: "4n"},
-  51:null,
-  52:{note: note_category[26].value, duration: "4n"},
-  53:null,
-  54:{note: note_category[27].value, duration: "4n"},
-  55:null,
-  56:{note: note_category[28].value, duration: "4n"},
-  57:null,
-  58:{note: note_category[29].value, duration: "4n"},
-  59:null,
-  60:{note: note_category[30].value, duration: "4n"},
-  61:null,
-  62:{note: note_category[31].value, duration: "4n"},
-  63:null,
+  32:{note: note_category[16].value, duration: "4n"},33:null,34:{note: note_category[17].value, duration: "4n"},35:null,
+  36:{note: note_category[18].value, duration: "4n"},37:null,38:{note: note_category[19].value, duration: "4n"},39:null,
+  40:{note: note_category[20].value, duration: "4n"},41:null,42:{note: note_category[21].value, duration: "4n"},43:null,
+  44:{note: note_category[22].value, duration: "4n"},45:null,46:{note: note_category[23].value, duration: "4n"},47:null,
+  48:{note: note_category[24].value, duration: "4n"},49:null,50:{note: note_category[25].value, duration: "4n"},51:null,
+  52:{note: note_category[26].value, duration: "4n"},53:null,54:{note: note_category[27].value, duration: "4n"},55:null,
+  56:{note: note_category[28].value, duration: "4n"},57:null,58:{note: note_category[29].value, duration: "4n"},59:null,
+  60:{note: note_category[30].value, duration: "4n"},61:null,62:{note: note_category[31].value, duration: "4n"},63:null,
 };
-
 for(i = 32; i < 64; i+=4){
     switch(rhythm_category[i/2].value){
     case "tata":
@@ -1846,7 +1645,6 @@ for(i = 32; i < 64; i+=4){
     default:
   }
 }
-
 for(i = 34; i < 64; i+=4){
     switch(rhythm_category[i/2].value){
     case "tata":
@@ -1866,20 +1664,16 @@ for(i = 34; i < 64; i+=4){
     default:
   }
 }
-
 const melodyList = [
   item["32"],item["33"],item["34"],item["35"],item["36"],item["37"],item["38"],item["39"],
   item["40"],item["41"],item["42"],item["43"],item["44"],item["45"],item["46"],item["47"],
   item["48"],item["49"],item["50"],item["51"],item["52"],item["53"],item["54"],item["55"],
   item["56"],item["57"],item["58"],item["59"],item["60"],item["61"],item["62"],item["63"]
 ];
-
 function setPlay(time, note) {synth.triggerAttackRelease(note.note, note.duration, time);}
-    const melody = new Tone.Sequence(setPlay, melodyList).start();
+    const melody = new Tone.Sequence(setPlay, melodyList).start(startTime);
     melody.loop = 0;  
-    Tone.Transport.start();
 }
-
 
   const C_chord = ["E4", "C4", "G3","C3"];
   const Am_chord = ["E4", "C4", "A3","A2"];
@@ -1888,39 +1682,8 @@ function setPlay(time, note) {synth.triggerAttackRelease(note.note, note.duratio
   const Dm_chord = ["F4", "D4", "A2","D2"];
   const G7_chord = ["F4", "D4", "B3","G3","C2"];
 
-
-
-
-function playCords(){
-  const synth = new Tone.PolySynth().toDestination();
-  changeTempo();
-  const melodyList = [
-  {time: "0:0", note: C_chord, duration: "2n",velocity: 0.6},
-  {time: "0:2", note: C_chord, duration: "2n",velocity: 0.6},
-  {time: "1:0", note: Am_chord, duration: "2n",velocity: 0.6},
-  {time: "1:2", note: Am_chord, duration: "2n",velocity: 0.6},
-  {time: "2:0", note: F_chord, duration: "2n",velocity: 0.6},
-  {time: "2:2", note: F_chord, duration: "2n",velocity: 0.6},
-  {time: "3:0", note: G_chord, duration: "1m",velocity: 0.6},
-  {time: "4:0", note: C_chord, duration: "2n",velocity: 0.6},
-  {time: "4:2", note: C_chord, duration: "2n",velocity: 0.6},
-  {time: "5:0", note: Am_chord, duration: "2n",velocity: 0.6},
-  {time: "5:2", note: Am_chord, duration: "2n",velocity: 0.6},
-  {time: "6:0", note: Dm_chord, duration: "2n",velocity: 0.6},
-  {time: "6:2", note: G7_chord, duration: "2n",velocity: 0.6},
-  {time: "7:0", note: C_chord, duration: "1m",velocity: 0.6},
-];
-
-function setPlay(time, note) {
-  synth.triggerAttackRelease(note.note, note.duration, time,note.velocity);
-}
-  const melody = new Tone.Part(setPlay, melodyList).start();
-  melody.loop = 0; 
-  Tone.Transport.start();
-}
-
-
-function playCordsFirstHalf(){
+//前半コード再生
+function playCordsFirstHalf(startTime){
   const synth = new Tone.PolySynth().toDestination();
   changeTempo();
   const melodyList = [
@@ -1932,16 +1695,14 @@ function playCordsFirstHalf(){
   {time: "2:2", note: F_chord, duration: "2n",velocity: 0.6},
   {time: "3:0", note: G_chord, duration: "1m",velocity: 0.6},
 ];
-
 function setPlay(time, note) {
   synth.triggerAttackRelease(note.note, note.duration, time,note.velocity);
 }
-  const melody = new Tone.Part(setPlay, melodyList).start();
-  melody.loop = 0; 
-  Tone.Transport.start();
+  const melody = new Tone.Part(setPlay, melodyList).start(startTime);
 }
 
-function playCordsLatterHalf(){
+//後半コード再生
+function playCordsLatterHalf(startTime){
   const synth = new Tone.PolySynth().toDestination();
   changeTempo();
   const melodyList = [
@@ -1953,13 +1714,10 @@ function playCordsLatterHalf(){
   {time: "2:2", note: G7_chord, duration: "2n",velocity: 0.6},
   {time: "3:0", note: C_chord, duration: "1m",velocity: 0.6},
 ];
-
 function setPlay(time, note) {
   synth.triggerAttackRelease(note.note, note.duration, time,note.velocity);
 }
-  const melody = new Tone.Part(setPlay, melodyList).start();
-  melody.loop = 0; 
-  Tone.Transport.start();
+  const melody = new Tone.Part(setPlay, melodyList).start(startTime);
 }
 </script>
 <script src="https://unpkg.com/tone@14.7.77/build/Tone.js"></script>
