@@ -984,6 +984,7 @@ if(play_mode.value == "play_first_half" || play_mode.value == "play_latter_half"
     statusAble = setInterval(btnAble , 7000); 
         break;    
     default:  
+    statusAble = setInterval(btnAble , 10500); 
   }  
 }
 else{
@@ -1006,7 +1007,8 @@ else{
     case "tempo_160":
     statusAble = setInterval(btnAble , 12500); 
         break;           
-    default:  
+    default: 
+    statusAble = setInterval(btnAble , 17000); 
   }  
 }
 }
@@ -1016,6 +1018,14 @@ document.getElementById("stop").addEventListener("click", function() {
     Refresh();
 }, false);
 
+//初期化
+function Refresh(){
+  Tone.Transport.stop();
+  Tone.Transport.cancel();
+  btnAble();
+}
+
+//リズム再生
 document.getElementById("tan").addEventListener("click", function() {
   const synth = new Tone.Synth().toDestination();
   changeTempo();
@@ -1092,6 +1102,7 @@ function setPlay(time, note) {
   Tone.Transport.start();
 }, false);
 
+//鍵盤音階再生
   document.getElementById("do").addEventListener("click", function() {
   const synth = new Tone.Synth().toDestination();
   synth.triggerAttackRelease("C4", "4n");
@@ -1142,6 +1153,7 @@ document.getElementById("mi_high").addEventListener("click", function() {
   synth.triggerAttackRelease("E5", "4n");
 }, false);
 
+//全体で使う変数や設定など
     const note_category = [note_category1,note_category2,note_category3,note_category4,note_category5,note_category6,note_category7,note_category8,note_category9,note_category10,note_category11,note_category12,note_category13,note_category14,note_category15,note_category16,note_category17,note_category18,note_category19,note_category20,note_category21,note_category22,note_category23,note_category24,note_category25,note_category26,note_category27,note_category28,note_category29,note_category30,note_category31,note_category32];
     const rhythm_category = [rhythm_category1,rhythm_category2,rhythm_category3,rhythm_category4,rhythm_category5,rhythm_category6,rhythm_category7,rhythm_category8,rhythm_category9,rhythm_category10,rhythm_category11,rhythm_category12,rhythm_category13,rhythm_category14,rhythm_category15,rhythm_category16,rhythm_category17,rhythm_category18,rhythm_category19,rhythm_category20,rhythm_category21,rhythm_category22,rhythm_category23,rhythm_category24,rhythm_category25,rhythm_category26,rhythm_category27,rhythm_category28,rhythm_category29,rhythm_category30,rhythm_category31,rhythm_category32];
     
@@ -1163,30 +1175,9 @@ document.getElementById("mi_high").addEventListener("click", function() {
     const first = document.getElementById("first");
     const latter = document.getElementById("latter");
     play_mode.onchange = displayNote;
+    const notes = new Array(32); 
 
-function Refresh(){
-  Tone.Transport.stop();
-  Tone.Transport.cancel();
-  btnAble();
-}
-
-function preparePlay(){
-  if(tempo_category.value == "select"){
-    tempo_category.value = "tempo_100";    
-    }
-  if(play_mode.value == "select"){
-    play_mode.value = "play";    
-    }
-  
-  for(i = 0; i < rhythm_category.length; i++){
-    if(rhythm_category[i].value == "select"){
-    rhythm_category[i].value = "tan";    
-    }
-  }
-}
-
-const notes = new Array(32); 
-
+//選択肢表示・非表示
 function rhythmDisplayFirst(){
   for(i = 0; i < rhythm_category.length/2; i++){
     note_category[i].style.visibility = "visible";
@@ -1279,6 +1270,7 @@ function rhythmDisplayLatterClear(){
   }
 }
 
+//楽譜表示
 function displayNote(){
   if(play_mode.value == "play_first_half"){
     first.style.visibility = "visible";
@@ -1298,12 +1290,12 @@ function displayNote(){
     rhythmDisplayFirst();
     rhythmDisplayLatter();
   }
-
   changeRythm();
   ABCJS.renderAbc("note","M:4/4\nL:1/4\nK:C\n " + `"C"` + `${notes[0]}` + notes[1] + notes[2] + notes[3] + "|" + `"Am"` + `${notes[4]}` + notes[5] + notes[6] + notes[7] + "|" + `"F"` + `${notes[8]}` + notes[9] + notes[10] + notes[11] + "|" + `"G"` + `${notes[12]}`  + notes[13] + notes[14] + notes[15] + "|",{responsive: "resize",paddingtop:"0",paddingbottom:"-16"});
   ABCJS.renderAbc("note2","\nL:1/4\nK:C\n " + `"C"` + `${notes[16]}` + notes[17] + notes[18] + notes[19] + "|" + `"Am"` + `${notes[20]}` + notes[21] + notes[22] + notes[23] + "|" + `"Dm"` + `${notes[24]}` + notes[25] + `"G7"` + `${notes[26]}`  + notes[27] + "|" + `"C"` + `${notes[28]}` + notes[29] + notes[30] + notes[31] + "||",{responsive: "resize",paddingtop:"0",paddingbottom:"-16"});
 }    
 
+//楽譜表示切り替え
 function changeRythm(){
   let display_note;
     for(i = 0; i < rhythm_category.length; i+=2){
@@ -1451,6 +1443,49 @@ function changeRythm(){
   }
 }
 
+//何も選択していないときの初期値
+function preparePlay(){
+  if(tempo_category.value == "select"){
+    tempo_category.value = "tempo_100";    
+    }
+  if(play_mode.value == "select"){
+    play_mode.value = "play";    
+    }
+  
+  for(i = 0; i < rhythm_category.length; i++){
+    if(rhythm_category[i].value == "select"){
+    rhythm_category[i].value = "tan";    
+    }
+  }
+}
+
+//テンポ切り替え
+function changeTempo(){
+    switch (tempo_category.value){
+    case "tempo_60":
+    Tone.Transport.bpm.value = 60;
+        break;
+    case "tempo_80":
+    Tone.Transport.bpm.value = 80;
+        break;
+    case "tempo_100":
+    Tone.Transport.bpm.value = 100;
+        break;
+    case "tempo_120":
+    Tone.Transport.bpm.value = 120;     
+        break;    
+    case "tempo_140":
+    Tone.Transport.bpm.value = 140;     
+        break;    
+    case "tempo_160":
+    Tone.Transport.bpm.value = 160;     
+        break;      
+    default:  
+    Tone.Transport.bpm.value = 100;
+  }  
+}
+
+//再生
 function playMode(){
   Tone.Transport.start();
   switch (play_mode.value){
@@ -1482,31 +1517,6 @@ function playMode(){
       playCordsFirstHalf("0m");
       playCordsLatterHalf("4m");  
   }    
-}
-
-function changeTempo(){
-    switch (tempo_category.value){
-    case "tempo_60":
-    Tone.Transport.bpm.value = 60;
-        break;
-    case "tempo_80":
-    Tone.Transport.bpm.value = 80;
-        break;
-    case "tempo_100":
-    Tone.Transport.bpm.value = 100;
-        break;
-    case "tempo_120":
-    Tone.Transport.bpm.value = 120;     
-        break;    
-    case "tempo_140":
-    Tone.Transport.bpm.value = 140;     
-        break;    
-    case "tempo_160":
-    Tone.Transport.bpm.value = 160;     
-        break;      
-    default:  
-    Tone.Transport.bpm.value = 100;
-  }  
 }
 
 //前半旋律再生
@@ -1666,12 +1676,13 @@ function setPlay(time, note) {synth.triggerAttackRelease(note.note, note.duratio
     melody.loop = 0;  
 }
 
-  const C_chord = ["E4", "C4", "G3","C3"];
-  const Am_chord = ["E4", "C4", "A3","A2"];
-  const F_chord = ["F4", "C4", "A3","F2"];
-  const G_chord = ["D4", "B3", "D3","G2"];
-  const Dm_chord = ["F4", "D4", "A2","D2"];
-  const G7_chord = ["F4", "D4", "B3","G3","C2"];
+//コード
+const C_chord = ["E4", "C4", "G3","C3"];
+const Am_chord = ["E4", "C4", "A3","A2"];
+const F_chord = ["F4", "C4", "A3","F2"];
+const G_chord = ["D4", "B3", "D3","G2"];
+const Dm_chord = ["F4", "D4", "A2","D2"];
+const G7_chord = ["F4", "D4", "B3","G3","C2"];
 
 //前半コード再生
 function playCordsFirstHalf(startTime){
