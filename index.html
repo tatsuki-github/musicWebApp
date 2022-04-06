@@ -947,68 +947,68 @@
 //再生ボタン
   document.getElementById("play").addEventListener("click", function() {
     playMode();
-    clicked();
+    playBtnClicked();
 }, false);
 
-function btnDisable(){ 
+function playBtnDisable(){ 
 document.getElementById("play").disabled = true;
 document.getElementById("play").style.backgroundColor = "#C0C0C0"
 clearInterval(statusDis);
 }
-function btnAble(){  
+function playBtnAble(){  
 document.getElementById("play").disabled = false;
 document.getElementById("play").style.backgroundColor = "#ff7e00"
 clearInterval(statusAble);
 }
 
-function clicked(){ 
-statusDis  = setInterval(btnDisable , 0); 
+function playBtnClicked(){ 
+statusDis  = setInterval(playBtnDisable , 0); 
 if(play_mode.value == "play_first_half" || play_mode.value == "play_latter_half"){
   switch (tempo_category.value){
     case "tempo_60":
-    statusAble = setInterval(btnAble , 17000); 
+    statusAble = setInterval(playBtnAble , 17000); 
         break;
     case "tempo_80":
-    statusAble = setInterval(btnAble , 13000); 
+    statusAble = setInterval(playBtnAble , 13000); 
         break;
     case "tempo_100":
-    statusAble = setInterval(btnAble , 10500); 
+    statusAble = setInterval(playBtnAble , 10500); 
         break;
     case "tempo_120":
-    statusAble = setInterval(btnAble , 9000); 
+    statusAble = setInterval(playBtnAble , 9000); 
         break;    
     case "tempo_140":
-    statusAble = setInterval(btnAble , 8000); 
+    statusAble = setInterval(playBtnAble , 8000); 
         break;    
     case "tempo_160":
-    statusAble = setInterval(btnAble , 7000); 
+    statusAble = setInterval(playBtnAble , 7000); 
         break;    
     default:  
-    statusAble = setInterval(btnAble , 10500); 
+    statusAble = setInterval(playBtnAble , 10500); 
   }  
 }
 else{
   switch (tempo_category.value){
     case "tempo_60":
-    statusAble = setInterval(btnAble , 33000); 
+    statusAble = setInterval(playBtnAble , 33000); 
         break;
     case "tempo_80":
-    statusAble = setInterval(btnAble , 25000); 
+    statusAble = setInterval(playBtnAble , 25000); 
         break;
     case "tempo_100":
-    statusAble = setInterval(btnAble , 17000); 
+    statusAble = setInterval(playBtnAble , 17000); 
         break;
     case "tempo_120":
-    statusAble = setInterval(btnAble , 16500); 
+    statusAble = setInterval(playBtnAble , 16500); 
         break;    
     case "tempo_140":
-    statusAble = setInterval(btnAble , 14500); 
+    statusAble = setInterval(playBtnAble , 14500); 
         break;    
     case "tempo_160":
-    statusAble = setInterval(btnAble , 12500); 
+    statusAble = setInterval(playBtnAble , 12500); 
         break;           
     default: 
-    statusAble = setInterval(btnAble , 17000); 
+    statusAble = setInterval(playBtnAble , 17000); 
   }  
 }
 }
@@ -1022,7 +1022,7 @@ document.getElementById("stop").addEventListener("click", function() {
 function Refresh(){
   Tone.Transport.stop();
   Tone.Transport.cancel();
-  btnAble();
+  playBtnAble();
 }
 
 //リズム再生
@@ -1590,7 +1590,6 @@ function setPlay(time, note) {synth.triggerAttackRelease(note.note, note.duratio
     const melody = new Tone.Sequence(setPlay, melodyList).start(startTime);
     melody.loop = 0;  
 }
-
 
 //後半旋律再生
 function playMelodyLatterHalf(startTime) {
