@@ -17,11 +17,6 @@
       */
 </script>
 
-<!--jQuery-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<script src="js/abcjs-basic-min.js"></script>
-
 </head>
 
 <body>
@@ -946,7 +941,7 @@
 
 //再生ボタン
   document.getElementById("play").addEventListener("click", function() {
-    playMode();
+    play();
     playBtnClicked();
 }, false);
 
@@ -955,6 +950,7 @@ document.getElementById("play").disabled = true;
 document.getElementById("play").style.backgroundColor = "#C0C0C0"
 clearInterval(statusDis);
 }
+
 function playBtnAble(){  
 document.getElementById("play").disabled = false;
 document.getElementById("play").style.backgroundColor = "#ff7e00"
@@ -1015,7 +1011,7 @@ else{
 
 //停止ボタン
 document.getElementById("stop").addEventListener("click", function() {
-    Refresh();
+  Refresh();
 }, false);
 
 //初期化
@@ -1486,7 +1482,7 @@ function changeTempo(){
 }
 
 //再生
-function playMode(){
+function play(){
   Tone.Transport.start();
   switch (play_mode.value){
     case "only_code":
@@ -1710,5 +1706,7 @@ function setPlay(time, note) {
 }
 </script>
 <script src="https://unpkg.com/tone@14.7.77/build/Tone.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="js/abcjs-basic-min.js"></script>
 </body>
 </html>
