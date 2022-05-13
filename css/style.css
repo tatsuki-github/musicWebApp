@@ -64,26 +64,23 @@ select {
   font-size: 4vw;
 }
 
-.rhythm_img img {
-  width: 10vw;
-  height: auto;
-}
-
 #tan,
 #tata,
 #un,
 #tau,
-#uta {
+#uta,
+#takka {
   border: 0.2vw solid lightblue;
-  width: 50%;
-  height: 50%;
-  object-fit: cover;
+  width: 48px;
+  height: 56px;
 }
 
 #ta__n,
 #ta_nta,
 #tata_n {
   border: 0.2vw solid lightpink;
+  width: 96px;
+  height: 56px;
 }
 
 .rhythm_img p {
